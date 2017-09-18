@@ -4,8 +4,8 @@
   "description": "react pet project :D",
   "main": "index.js",
   "scripts": {
-    "start": "npm-run-all --parallel  open:src lint:watch",
-    "open:src": "babel-node tools/server.js",
+    "start": "npm-run-all --parallel  server:run lint:watch ",
+    "server:run": "babel-node tools/server.js",
     "lint": "node_modules/.bin/esw webpack.config.* src tools",
     "lint:watch": "npm run lint -- --watch"
   },
@@ -19,6 +19,7 @@
   "author": "Ali Elouai",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.1",
     "bootstrap": "~3.3.6",
     "ejs": "^2.5.7",
     "jquery": "~2.2.3",
