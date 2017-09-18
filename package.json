@@ -19,6 +19,7 @@
   "author": "Ali Elouai",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.16.2",
     "body-parser": "^1.18.1",
     "bootstrap": "~3.3.6",
     "ejs": "^2.5.7",
@@ -33,7 +34,8 @@
     "react-router-redux": "~4.0.4",
     "redux": "~3.5.2",
     "redux-thunk": "~2.0.1",
-    "toastr": "~2.1.2"
+    "toastr": "~2.1.2",
+    "uuid": "^3.1.0"
   },
   "devDependencies": {
     "babel-cli": "~6.8.0",
