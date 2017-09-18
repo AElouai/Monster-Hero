@@ -1,14 +1,14 @@
 import React from 'react';
 import {Link} from 'react-router';
 import Monster from './Monster';
-import Header from './Header';
-import Footer from './Footer';
+import Header from '../cummun/Header';
+import Footer from '../cummun/Footer';
 
 const Home = ({ }) =>
     <div >
-        <Header/>
+        <Header headerClass="right-header"  upperText="HERO" midText="or" lowerText="MONSTER"/>
         <Link to="result"><Monster/></Link>
-        <Footer/>
+        <Footer upperText="Let's find" midText="OUT" lowerText="Who you are ;D"/>
     </div>
 
 export default Home;

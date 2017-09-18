@@ -1,6 +1,6 @@
 import './index.css';
 import React from 'react';
-import Click from '../click'
+
 const Monster = ({ selected=false }) =>
     <div className="container">
         <div className="monster"></div>
