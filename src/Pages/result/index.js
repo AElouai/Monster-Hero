@@ -2,7 +2,7 @@ import React , { Component } from 'react';
 import {Link} from 'react-router';
 import Profile from './profile'
 import './index.css'
-import Header from '../cummun/Header';
+import Header from '../../cummun/Header';
 import axios from 'axios';
 
 

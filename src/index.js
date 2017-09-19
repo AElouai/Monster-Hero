@@ -1,7 +1,7 @@
 import React from 'react';
 import {Router , browserHistory} from 'react-router';
 import ReactDOM from 'react-dom';
-import configureStore from './Pages/store/configure.store';
+import configureStore from './store/configure.store';
 import {Provider} from 'react-redux';
 import './index.css';
 import routes from './routes';

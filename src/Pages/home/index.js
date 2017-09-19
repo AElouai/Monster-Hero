@@ -1,8 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router';
 import Monster from './Monster';
-import Header from '../cummun/Header';
-import Footer from '../cummun/Footer';
+import Header from '../../cummun/Header';
+import Footer from '../../cummun/Footer';
 
 const Home = ({ }) =>
     <div >

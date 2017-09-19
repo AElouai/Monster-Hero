@@ -1,8 +1,9 @@
-import React , {Component} from 'react';
+import React , {Component , PropTypes} from 'react';
 import Question from './Question'
 import {connect} from 'react-redux';
-import * as quizActions from "../actions/quiz.actions"
+import * as quizActions from "../../actions/quiz.actions"
 import { v4 } from 'uuid'
+import { saveResponse } from '../../actions/quiz.actions'
 
 const question ={
     question:"You prefer to crush your enemies with : ",
@@ -13,23 +14,31 @@ const question ={
     id:34
 };
 
+
+export const Quizzes = connect(
+    null,
+    dispatch =>
+        ({
+            question ,
+            onNewResponse(response) {
+                dispatch(saveResponse(response))
+            }
+        })
+)(Question);
+
+
+/*
 class Quizzes extends Component {
 
     constructor(props , context){
         super(props , context);
-        this.state = { loading: true };
         this.OnClickSave = this.OnClickSave.bind(this);
     }
 
     OnClickSave(event){
-        this.props.dispatch(quizActions.saveResponse({ response : {  id : question.id , response : event } } ) );
-        this.setState({ loading: event });
-        console.warn(this.props.response);
+        this.props.saveResponse({ response : {  id : question.id , response : event } } );
     }
 
-    componentWillMount(){
-        console.log("componentWillMount" , question);
-    }
     render(){
         return(
             <div id="quizzie">
@@ -37,43 +46,44 @@ class Quizzes extends Component {
                 <ul className="quiz-step step1 current">
                     <li className="question">
                         <div className="question-wrap">
-                            <h2>Question #1: { question.question }</h2>
+                            <h2>Question #1: {question.question}</h2>
                         </div>
                     </li>
-                    { question.answers.map((el)=>{
+                    {question.answers.map((el)=>{
                             return <li key={v4()} className="quiz-answer low-value"  >
                             <div className="answer-wrap">
-                            <p onClick={ ()=> this.OnClickSave(el) } className="answer-text" >{el}</p>
+                            <p onClick={()=> this.OnClickSave(el)} className="answer-text" >{el}</p>
                             </div>
                             </li>
                         })
                     }
                 </ul>
-
-                <div>{this.state.loading==true ? ' loading ':
-                    this.props.response.map((elmnt)=>{
-                        <p>{elmnt}</p>
-                    })
-                }</div>
             </div>
         );
     }
 }
 
-function mapStateToProps(state , ownProps) {
-    console.log("mapStateToProps", state);
-    console.log("typeof this.props.response", typeof  state.response);
-    console.log("this.props.response",state.response);
+Quizzes.propTypes = {
+    response : React.PropTypes.func,
+    dispatch : React.PropTypes.array
+};
 
-
+const mapStateToProps = (state , ownProps) => {
     return {
         response : state.response
     }
-}
+};
 
-/*
+const mapDispatchToProps = dispatch =>
+    ({
+        saveResponse(response) {
+            dispatch(quizActions.saveResponse(response))
+        }
+    });
+
+/!*
 <Question { ...question , OnClickSave } />
-*/
+*!/
 
 // export default Quizzes;
-export default connect(mapStateToProps)(Quizzes);
+export default connect(mapStateToProps,mapDispatchToProps)(Quizzes);*/
