@@ -23,16 +23,16 @@ class Result extends Component {
     componentWillMount(){
         console.log("componentWillMount " );
         this.setState({ loading: true });
-
         axios.post(`http://localhost:3300/api/type`)
             .then(res => {
                 console.log("DATA =========>>>>>>",res.data);
-                this.props = res.data;
-                this.state = {
+                this.setState({
                     loading: false,
                     data : res.data
-                }
+                })
             });
+
+
     }
 
     componentDidMount() {
@@ -47,7 +47,7 @@ class Result extends Component {
             this.state.loading == true ?
                 <div>Loading Data </div> :
             <div className="bodyClass">
-                <Header headerClass="center-header"  upperText="HERO" midText="or" lowerText="MONSTER"/>
+                <h1 headerClass="center-header" >Your lucky to be</h1>
                 <div className="row">
                     <div className="col-sm-12 col-xs-12 col-md-3"></div>
                     <div className="col-sm-12 col-xs-12 col-md-6">

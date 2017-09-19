@@ -2,7 +2,7 @@ import React , {PropTypes} from 'react';
 import './index.css'
 import { v4 } from 'uuid'
 
-const Profile = ({ question="" , answers=[] }) =>
+const Profile = ({ question="" , answers=[] ,id , OnClickSave }) =>
     <div id="quizzie">
         <h1>What Type Of Being Are You?</h1>
         <ul className="quiz-step step1 current">
@@ -12,9 +12,9 @@ const Profile = ({ question="" , answers=[] }) =>
                 </div>
             </li>
             {answers.map(function(el){
-                return <li key={v4()} className="quiz-answer low-value" data-quizIndex="2">
+                return <li key={v4()} className="quiz-answer low-value"  >
                         <div className="answer-wrap">
-                            <p className="answer-text">{el}</p>
+                            <p onClick={OnClickSave({ id , response : el })} className="answer-text">{el}</p>
                         </div>
                     </li>
             })}
@@ -38,6 +38,8 @@ const Profile = ({ question="" , answers=[] }) =>
 
 Profile.prototype = {
     question: PropTypes.string,
-    answers : PropTypes.array
+    answers : PropTypes.array,
+    id : PropTypes.number,
+    OnClickSave: PropTypes.func
 };
 export default Profile;

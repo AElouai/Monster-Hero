@@ -6,7 +6,7 @@ const Profile = ({ age=0 , name='unknown' , bio='Null' , img="" }) =>
         <h1>{name}</h1>
         <h2>Age: {age}</h2>
         <h2>Bio: {bio}</h2>
-        <img src={img} height="100%" width="95%"/>
+        <img src={img} />
         <br />
     </div>
 
