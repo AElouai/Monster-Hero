@@ -78,6 +78,13 @@ app.post('/api/type', function(req, res) {
     // res.send('OK :D');
 });
 
+app.post('/api/questions', function(req, res) {
+    console.log('Api fdfd called with data ---- : ',req.body);
+
+    res.status(202).json(questions)
+    // res.send('OK :D');
+});
+
 app.post('/api/question/:id', function(req, res) {
     console.log('Api fdfd called with data ---- : ',req.body);
 

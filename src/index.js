@@ -5,8 +5,10 @@ import configureStore from './store/configure.store';
 import {Provider} from 'react-redux';
 import './index.css';
 import routes from './routes';
+import { addQuestions } from './actions/quiz.actions'
 
 const store = configureStore();
+// store.dispatch(addQuestions);
 
 ReactDOM.render(
     <Provider store={store}>

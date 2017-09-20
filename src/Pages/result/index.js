@@ -23,6 +23,7 @@ class Result extends Component {
     componentWillMount(){
         console.log("componentWillMount " );
         this.setState({ loading: true });
+        console.warn(this.state.response);
         axios.post(`http://localhost:3300/api/type`)
             .then(res => {
                 console.log("DATA =========>>>>>>",res.data);
@@ -48,18 +49,11 @@ class Result extends Component {
                 <div>Loading Data </div> :
             <div className="bodyClass">
                 <h1 headerClass="center-header" >Your lucky to be</h1>
-                <div className="row">
-                    <div className="col-sm-12 col-xs-12 col-md-3"></div>
-                    <div className="col-sm-12 col-xs-12 col-md-6">
-                        <Profile
-                            name={this.state.data.name}
-                            age={this.state.data.age}
-                            bio={this.state.data.bio}
-                            img = {this.state.data.img} />
-                    </div>
-                    <div className="col-sm-12 col-xs-12 col-md-3"></div>
-                </div>
-
+                <Profile
+                    name={this.state.data.name}
+                    age={this.state.data.age}
+                    bio={this.state.data.bio}
+                    img = {this.state.data.img} />
             </div>
         );
     }

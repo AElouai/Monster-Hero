@@ -1,11 +1,11 @@
 import React , {Component , PropTypes} from 'react';
 import Question from './Question'
 import {connect} from 'react-redux';
-import * as quizActions from "../../actions/quiz.actions"
+import * as actions from "../../actions/quiz.actions"
 import { v4 } from 'uuid'
-import { saveResponse } from '../../actions/quiz.actions'
 
-const question ={
+/*
+const qZ ={
     question:"You prefer to crush your enemies with : ",
     answers: [
         "Monstrous force; heroes are meant to fall in fair combat",
@@ -13,52 +13,39 @@ const question ={
     ],
     id:34
 };
+*/
 
-
-export const Quizzes = connect(
-    null,
-    dispatch =>
-        ({
-            question ,
-            onNewResponse(response) {
-                dispatch(saveResponse(response))
-            }
-        })
-)(Question);
-
-
-/*
 class Quizzes extends Component {
 
     constructor(props , context){
         super(props , context);
+        let questions = JSON.parse(localStorage.getItem('questions'));
+        this.state = {
+            question : questions[0] ,
+            at : 0,
+            max :questions.length
+        };
         this.OnClickSave = this.OnClickSave.bind(this);
     }
 
-    OnClickSave(event){
-        this.props.saveResponse({ response : {  id : question.id , response : event } } );
+    componentWillMount(){
+        console.log('componentWillMount');
+    }
+    OnClickSave(data){
+        // debugger;
+        const ato = this.state.at + 1;
+        let questions = JSON.parse(localStorage.getItem('questions'));
+        let question = questions[ato];
+        console.warn(question );
+        this.setState({ question: question, at : ato });
+        this.props.saveResponse({ response : {  id : data.id , response : data.response } } );
     }
 
     render(){
         return(
-            <div id="quizzie">
-                <h1>What Type Of Being Are You?</h1>
-                <ul className="quiz-step step1 current">
-                    <li className="question">
-                        <div className="question-wrap">
-                            <h2>Question #1: {question.question}</h2>
-                        </div>
-                    </li>
-                    {question.answers.map((el)=>{
-                            return <li key={v4()} className="quiz-answer low-value"  >
-                            <div className="answer-wrap">
-                            <p onClick={()=> this.OnClickSave(el)} className="answer-text" >{el}</p>
-                            </div>
-                            </li>
-                        })
-                    }
-                </ul>
-            </div>
+            this.state.at > this.state.max ?
+                <Question question={this.state.question}  onNewResponse={this.OnClickSave}  /> :
+                <Question question={this.state.question}  onNewResponse={this.OnClickSave}  />
         );
     }
 }
@@ -77,13 +64,13 @@ const mapStateToProps = (state , ownProps) => {
 const mapDispatchToProps = dispatch =>
     ({
         saveResponse(response) {
-            dispatch(quizActions.saveResponse(response))
+            dispatch(actions.saveResponse(response))
         }
     });
 
-/!*
+/*
 <Question { ...question , OnClickSave } />
-*!/
+*/
 
 // export default Quizzes;
-export default connect(mapStateToProps,mapDispatchToProps)(Quizzes);*/
+export default connect(mapStateToProps,mapDispatchToProps)(Quizzes);
