@@ -45,7 +45,7 @@ class Quizzes extends Component {
     render(){
         return(
             this.state.at < this.state.max ?
-                <Question question={this.state.question}  onNewResponse={this.OnClickSave}  /> :
+                <Question question={this.state.question} index={this.state.at} onNewResponse={this.OnClickSave}  /> :
                 <Result response={this.props.response}   />
         );
     }

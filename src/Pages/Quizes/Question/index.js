@@ -2,13 +2,13 @@ import React , {PropTypes} from 'react';
 import './index.css'
 import { v4 } from 'uuid'
 
-const Profile = ({  question ,  onNewResponse }) =>
+const Profile = ({  question ,  onNewResponse , index = 0 }) =>
     <div id="quizzie">
         <h1>What Type Of Being Are You?</h1>
         <ul className="quiz-step step1 current">
             <li className="question">
                 <div className="question-wrap">
-                    <h2>Question #1: { question.question }</h2>
+                    <h2>Question #{index}: { question.question }</h2>
                 </div>
             </li>
             {question.answers.map(function(el){
@@ -26,6 +26,7 @@ Profile.prototype = {
     question: PropTypes.object,
     // answers : PropTypes.array,
     // id : PropTypes.number,
-    onNewResponse: PropTypes.func
+    onNewResponse: PropTypes.func,
+    index: PropTypes.number
 };
 export default Profile;
