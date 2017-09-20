@@ -1,5 +1,6 @@
 import React , {Component , PropTypes} from 'react';
 import Question from './Question'
+import Result from '../result'
 import {connect} from 'react-redux';
 import * as actions from "../../actions/quiz.actions"
 import { v4 } from 'uuid'
@@ -36,16 +37,16 @@ class Quizzes extends Component {
         const ato = this.state.at + 1;
         let questions = JSON.parse(localStorage.getItem('questions'));
         let question = questions[ato];
-        console.warn(question );
+        console.warn(this.props.response );
         this.setState({ question: question, at : ato });
         this.props.saveResponse({ response : {  id : data.id , response : data.response } } );
     }
 
     render(){
         return(
-            this.state.at > this.state.max ?
+            this.state.at < this.state.max ?
                 <Question question={this.state.question}  onNewResponse={this.OnClickSave}  /> :
-                <Question question={this.state.question}  onNewResponse={this.OnClickSave}  />
+                <Result response={this.props.response}   />
         );
     }
 }
